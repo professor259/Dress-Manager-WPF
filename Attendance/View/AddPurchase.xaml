@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="Attendance.View.AddPurchase"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Attendance.View"
+              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"  
+             mc:Ignorable="d" 
+             Background="Transparent"             
+           
+                 Style="{StaticResource Page_Style}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                        <Border x:Name="border" CornerRadius="12" Padding="10 7" Background="#ffffff" BorderBrush="#e0e6ed" BorderThickness="1">
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#d9d9d9" TargetName="border"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#d9d9d9" TargetName="border"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+
+    </UserControl.Resources>
+    <Border Background="#FFBABBBB" CornerRadius="30" >
+        <Grid>
+
+
+            <Grid Grid.Column="1" Margin="30 20 20 20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Separator Height="1" Grid.Row="2" Background="#dae2ea" Margin="0,7,0,47"/>
+                <!--Tab Buttons-->
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,6,0,4">
+                    <Button Name="ShowBtn" Content="Add New Purchase" Style="{StaticResource tabButton}" BorderBrush="#FFFFC0C0" Width="748" Margin="0,-44,0,44"/>
+                </StackPanel>
+                <Icon:PackIconMaterial Kind="CashMinus" Width="15" Height="16" VerticalAlignment="Center" Margin="440,8,0,8" Foreground="Black" HorizontalAlignment="Left"/>
+                <TextBlock Text="Type:" Grid.Row="4" FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,18,0,0" RenderTransformOrigin="0.751,1.044"/>
+                <Grid Width="200" HorizontalAlignment="Left" Grid.Row="2" Margin="0,54,0,1" Grid.RowSpan="3" />
+                <TextBox x:Name="ClassID"  Visibility="Hidden" />
+                <TextBlock Text="Price:" Grid.Row="5" FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,38,0,232" RenderTransformOrigin="0.682,1.122"/>
+                <Grid Width="97" HorizontalAlignment="Left" Grid.Row="5" Margin="0,25,0,228" >
+                    <TextBlock Margin="89,8,-59,8" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False" Panel.ZIndex="1" Text="Price...." Visibility="{Binding ElementName=Price,Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
+                    <TextBox x:Name="Price" PreviewTextInput="NumberValidationTextBox"  Padding="35 15"  Margin="74,4,-187,-4"  />
+
+                </Grid>
+                <ComboBox x:Name="Type" Text="-- اختر من القائمة --"  IsEditable="False" FontSize="13" FontWeight="SemiBold" SelectedIndex="-1" IsReadOnly="True" HorizontalAlignment="Left" VerticalAlignment="Center"  SelectionChanged="FacultySelect_SelectionChanged"  Grid.Row="4"  Width="200" Margin="82,12,0,284"  Height="27" Grid.RowSpan="2"  />
+                <TextBlock Text="Time:"  FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="9,148,0,122" Grid.Row="5"/>
+                <DatePicker x:Name="Time" FontSize="13" FontWeight="SemiBold" SelectedDate="{x:Static sys:DateTime.Now}"  HorizontalAlignment="Left" SelectedDateChanged="DateStart_SelectedDateChanged"  VerticalAlignment="Center"   Width="200" Margin="82,143,0,117"  Height="28" Grid.Row="5"  >
+                </DatePicker>
+                <Button x:Name="AddBtn" Style="{StaticResource addButton}" Click="Button_Click" Margin="0,255,421,0"  Height="Auto" Grid.Row="5" Width="150">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Plus"  VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
+                        <TextBlock Text="Add Purchase"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="Cancel" Style="{StaticResource addButton}" Background="#d32f2f" Click="Cancel_Click"  Margin="0,255,197,0"  Height="Auto" Grid.Row="5" Width="159">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Cancel"  VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
+                        <TextBlock Text="Cancel"/>
+                    </StackPanel>
+                </Button>
+                <TextBlock Text="Paid:" Grid.Row="5" FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="9,94,0,176" RenderTransformOrigin="0.682,1.122"/>
+                <Grid Width="97" HorizontalAlignment="Left" Grid.Row="5" Margin="0,82,0,171" >
+                    <TextBlock Margin="89,13,-59,6" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False" Panel.ZIndex="1" Text="Paid...." Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=Paid}"/>
+                    <TextBox x:Name="Paid" PreviewTextInput="NumberValidationTextBox"  Padding="35 15"  Margin="74,5,-187,-5"  />
+
+                </Grid>
+                <TextBlock Text="Note:" Grid.Row="5" FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="9,207,0,64" RenderTransformOrigin="0.682,1.122"/>
+                <Grid Width="97" HorizontalAlignment="Left" Grid.Row="5" Margin="0,192,0,61" >
+                    <TextBlock Margin="89,15,-122,4" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False" Panel.ZIndex="1" Text="Note...." Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=Note}" HorizontalAlignment="Left" Width="130"/>
+                    <TextBox x:Name="Note"   Padding="35 15"  Margin="74,7,-187,-7"  />
+
+                </Grid>
+                <TextBlock Text="Name:" Grid.Row="2" FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,28,0,10" RenderTransformOrigin="0.751,1.044"/>
+                <Grid Width="97" HorizontalAlignment="Left" Grid.Row="2" Margin="0,19,0,1" >
+                    <TextBlock Margin="89,8,-59,8" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False" Panel.ZIndex="1" Text="Name...." Visibility="{Binding Text.IsEmpty, Converter={StaticResource BoolToVis}, ElementName=Name}"/>
+                    <TextBox x:Name="Name"   Padding="35 15"  Margin="74,1,-187,-1"  />
+
+                </Grid>
+
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

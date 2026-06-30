@@ -1,0 +1,106 @@
+﻿<UserControl x:Class="Attendance.View.EndReserve"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+               xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Attendance.View"
+              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"  
+             mc:Ignorable="d" 
+             Background="Transparent"             
+           
+                 Style="{StaticResource Page_Style}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                        <Border x:Name="border" CornerRadius="12" Padding="10 7" Background="#ffffff" BorderBrush="#e0e6ed" BorderThickness="1">
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#d9d9d9" TargetName="border"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#d9d9d9" TargetName="border"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+
+    </UserControl.Resources>
+    <Border Background="#FFBABBBB" CornerRadius="30" >
+        <Grid>
+
+
+            <Grid Grid.Column="1" Margin="30 20 20 20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Separator Height="1" Grid.Row="3" Background="#dae2ea" Margin="0 -1 0 10"/>
+                <!--Tab Buttons-->
+                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 10 0 0">
+                    <Button Name="ShowBtn" Content="Complete Reservation" Style="{StaticResource tabButton}" BorderBrush="#784ff2" Width="748"/>
+                </StackPanel>
+                <Icon:PackIconMaterial Kind="CheckDecagram" Width="15" Height="16" VerticalAlignment="Center" Margin="451,24,0,15" Foreground="Black" HorizontalAlignment="Left" Grid.Row="2"/>
+                <TextBlock Text="Name:" Grid.Row="4" FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0 0 215 0"/>
+                <Grid Width="200" HorizontalAlignment="Left" Grid.Row="4" >
+                    <TextBlock Margin="89,8,-59,8" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False" Panel.ZIndex="1" Text="Enter Name ...." Visibility="{Binding ElementName=Name,Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
+
+                </Grid>
+                <Grid Width="200" HorizontalAlignment="Left" Grid.Row="4" />
+                <TextBlock Text="Price:" Grid.Row="5" FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,63,0,232"/>
+                <Grid Width="200" HorizontalAlignment="Left" Grid.Row="4" />
+                <TextBlock Text="Paid:" Grid.Row="5" FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,110,0,186"/>
+                <Grid Width="200" HorizontalAlignment="Left" Grid.Row="4" >
+                    <TextBlock Margin="80,237,63,-221" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False" Panel.ZIndex="1" Text="Enter Paid Amount ...." Visibility="{Binding ElementName=Paid,Path=Text.IsEmpty,Converter={StaticResource BoolToVis}}"/>
+                    <TextBox x:Name="Paid" PreviewTextInput="NumberValidationTextBox"  Padding="35 15"   Margin="66,229,33,-229"  />
+
+                </Grid>
+                <TextBlock Text="Remain:" Grid.Row="5" FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,157,0,139"/>
+                <Grid Width="200" HorizontalAlignment="Left" Grid.Row="4" />
+                <TextBlock Text="Reservation Start:" Grid.Row="4" FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="425,10,0,4"/>
+                <TextBlock Text="Reservation End:" Grid.Row="5" FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="425,70,0,226"/>
+                <Grid Width="200" HorizontalAlignment="Left" Grid.Row="4" />
+                <TextBlock Text="Code:"  FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,19,714,276" Grid.Row="5"/>
+
+
+                <Button x:Name="AddBtn" Style="{StaticResource addButton}" Click="Button_Click" Background="#43a047" Margin="0,256,434,22" Grid.Row="5">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="CheckCircleOutline"  VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
+                        <TextBlock Text="End Reservation"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="Cancel" Style="{StaticResource addButton}" Background="#d32f2f" Click="Cancel_Click"  Margin="0,256,175,22" Grid.Row="5">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Cancel"  VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
+                        <TextBlock Text="Cancel"/>
+                    </StackPanel>
+                </Button>
+                <TextBlock Text="Delivery Date:" Grid.Row="5" FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="425,24,0,272"/>
+                <TextBlock x:Name="PriceRent" Text="0 L.E"  FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,66,0,230" Grid.Row="5"/>
+                <TextBlock x:Name="NameValue" Text="0"  FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,7,0,7" Grid.Row="4" Width="236"/>
+                <TextBlock x:Name="RentedID" Text="0"  FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,21,0,274" Grid.Row="5" Width="88"/>
+                <TextBlock x:Name="PaidAmount" Text="0"  FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,114,0,182" Grid.Row="5"/>
+                <TextBlock x:Name="RemainAmount" Text="0 L.E"  FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="80,160,0,136" Grid.Row="5"/>
+                <TextBlock x:Name="PaidTxt" Text="Paid:" Grid.Row="5" FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,202,0,94"/>
+                <TextBlock x:Name="Start" Text="0" Grid.Row="4" FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="567,10,0,5"/>
+                <TextBlock x:Name="Deliver" Text="0" Grid.Row="5" FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="567,24,0,272"/>
+                <TextBlock x:Name="End" Text="0" Grid.Row="5" FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="567,70,0,226"/>
+
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

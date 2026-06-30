@@ -1,0 +1,34 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:Attendance.ViewModel"
+                  
+                    xmlns:view="clr-namespace:Attendance.View">
+
+    <DataTemplate DataType="{x:Type vm:HomeVM}">
+        <view:Home />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:StudentsVM}">
+        <view:Reserve />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:AdminsVM}">
+        <view:Admins />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:SearchVM}">
+        <view:Search />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:ClassVM}">
+        <view:Purchases />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:AttendanceVM}">
+        <view:AttendanceMenu />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:SettingsVM}">
+        <view:Settings />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:FacultyVM}">
+        <view:Dress />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:MaterialVM}">
+        <view:Materials />
+    </DataTemplate>
+</ResourceDictionary>
