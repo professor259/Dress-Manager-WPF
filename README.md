@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 👗 Dress Reservation System
 
 A desktop application developed in **C#** using **WPF** for managing dress reservations and rental operations.
@@ -40,3 +41,7 @@ Add screenshots of the application here.
 ## License
 
 This project is for educational purposes.
+=======
+# Dress-Manager-WPF
+A modern Dress Reservation System built with C# and WPF. The application allows users to manage dress inventory, reservations, customer information, rental periods, and order tracking through an intuitive desktop interface.
+>>>>>>> 78ee3dc8f5e1c772f513de2c59ffaed053dd44c1
