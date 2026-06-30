@@ -7,7 +7,7 @@ A desktop application developed in **C#** using **WPF** for managing dress reser
 
 ### Dashboard
 
-![Dashboard](assets/2.png)
+![Dashboard](tree/main/assets/2.png)
 
 
 ## Features
