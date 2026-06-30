@@ -3,6 +3,13 @@
 
 A desktop application developed in **C#** using **WPF** for managing dress reservations and rental operations.
 
+## Screenshots
+
+### Dashboard
+
+![Dashboard](assets/2.png)
+
+
 ## Features
 
 - 👗 Dress inventory management
